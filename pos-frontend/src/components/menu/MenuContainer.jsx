@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { menus } from '../../constants'
 import { GrRadialSelected   } from 'react-icons/gr'
+import { FaShoppingCart } from 'react-icons/fa';
 
 const MenuContainer = () => {
     const [selected, setSelected] = useState(menus[0]);
@@ -47,8 +48,14 @@ const MenuContainer = () => {
         {
             selected?.items.map((menu) => {
                 return (
-                    <div key={menu.id} className='flex flex-col items-start justify-between p-4 rounded-lg h-[120px] cursor-pointer hover:bg-[#2a2a2a] bg-[#1a1a1a] '>
-                        <h1 className='text-[#f5f5f5] text-lg font-semibold'> {menu.name}</h1>
+                    <div 
+                    key={menu.id}
+                    className='flex flex-col items-start justify-between p-4 rounded-lg h-[150px] hover:bg-[#2a2a2a] bg-[#1a1a1a] '>
+                        <div className='flex items-start justify-between w-full'>
+                            <h1 className='text-[#f5f5f5] text-lg font-semibold'> {menu.name}
+                            </h1>
+                            <button className='bg-[#2e4a40] text-[#02ca3a] p-2 rounded-lg '><FaShoppingCart /></button>
+                        </div>
 
                         <div className='flex items-center justify-between w-full'>
                         </div>
