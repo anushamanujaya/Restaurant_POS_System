@@ -23,7 +23,7 @@ const Orders = () => {
         </div>
       </div>
 
-      <div className='flex flex-wrap gap-6 px-16 py-4 overflow-y-scroll scrollbar-hide h-[calc(100vh-5rem-5rem)]'>
+      <div className='flex flex-wrap gap-6 px-16 pt-4 overflow-y-scroll scrollbar-hide h-[calc(100vh-5rem-5rem)] pb-24'>
       <OrderCard />
       <OrderCard />
       <OrderCard />

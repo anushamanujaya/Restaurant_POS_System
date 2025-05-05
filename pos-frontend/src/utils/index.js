@@ -11,4 +11,17 @@ export const getBgColor = () => {
     const randomBg = Math.floor(Math.random() * bgarr.length);
     const color = bgarr[randomBg];
     return color;
-}
+};
+
+export const getAvatarName = (name) => {
+    if(!name) return "";
+
+    return name.split(" ").map(word => word[0]).join("").toUpperCase();
+};
+
+export const formatDate = (date) => {
+    const months = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+    ];
+    return `${months[date.getMonth()]} ${String(date.getDate()).padStart(2, '0')}, ${date.getFullYear()}`;
+  };

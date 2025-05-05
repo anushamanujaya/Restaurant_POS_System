@@ -6,6 +6,8 @@ import { MdTableBar } from "react-icons/md";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FaCirclePlus } from 'react-icons/fa6';
 import Modal from '../shared/Modal.jsx';
+import { setCustomer } from '../../redux/slices/customerSlice.js';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -13,8 +15,11 @@ const BottomNav = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [guestCount, setGuestCount] = useState(0);
+  const [name, setName] = useState();
+  const [phone, setPhone] = useState();
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen (false);
 
@@ -28,6 +33,12 @@ const BottomNav = () => {
   }
 
   const isActive = (path) => location.pathname === path;
+
+  const handleCreateOrder =() => {
+    //send , data to store
+    dispatch (setCustomer({name , phone , guests: guestCount}));
+    navigate("/tables");
+  }
 
   return (
     <div className='fixed bottom-0 left-0 right-0 bg-[#262626] p-2 h-16 flex justify-around'>
@@ -64,13 +75,13 @@ const BottomNav = () => {
           <div>
             <label className='block text-[#ababab] mb-2 text-sm font-medium'>Customer Name</label>
               <div className='flex items-center rounded-lg p-3 px-4 bg-[#1f1f1f]'>
-                <input type='text' name='' placeholder='Enter customer name' id='' className='bg-transparent flex-1 text-white focus:outline'/>
+                <input value={name} onChange={(e) => setName(e.target.value)} type='text' name='' placeholder='Enter customer name' id='' className='bg-transparent flex-1 text-white focus:outline'/>
               </div>
           </div>
           <div>
             <label className='block text-[#ababab] mb-2 text-sm font-medium mt-3'>Customer Phone</label>
               <div className='flex items-center rounded-lg p-3 px-4 bg-[#1f1f1f]'>
-                <input type='number' name='' placeholder='+94-123456789' id='' className='bg-transparent flex-1 text-white focus:outline'/>
+                <input value={phone} onChange={(e) => setPhone(e.target.value)} type='number' name='' placeholder='+94-123456789' id='' className='bg-transparent flex-1 text-white focus:outline'/>
               </div>
           </div>
           <div>
@@ -81,7 +92,7 @@ const BottomNav = () => {
                 <button onClick={increment} className='text-yellow-500 text-2xl'>&#43;</button>
               </div>
           </div>
-          <button onClick={() => navigate('/tables')} className='w-full bg-[#f6b100] text-[#f5f5f5] rounded-lg py-3 mt-8 hover:bg-yellow-700'>Create Order</button>
+          <button onClick={handleCreateOrder} className='w-full bg-[#f6b100] text-[#f5f5f5] rounded-lg py-3 mt-8 hover:bg-yellow-700'>Create Order</button>
         </Modal>
 
 
